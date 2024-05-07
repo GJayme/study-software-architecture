@@ -1,4 +1,4 @@
-# Fundamentos da arquitetura de software
+# Arquitetura de software
 
 ## Fundamentos
 
@@ -67,3 +67,23 @@ Exemplo de arquitetos corporativos:
 - <b>OBS: [Manual do Arquiteto de Software](https://arquiteturadesoftware.online/).</b>
 
 ### Por que aprender arquitetura de software?
+- Pode navegar da visão macro para a visão micro de um ou mais softwares;
+- Entender quais são as diversas opções que temos para desenvolver a mesma coisa e escolher a melhor solução para determinado contexto;
+- Pensar a longo prazo no projeto e sua sustentabilidade;
+- Tomar decisões de forma mais fria e calculada evitando assim ser influenciado(a) por "hypes" de mercado;
+- Mergulho em padrões de projeto e de desenvolvimento e suas boas práticas;
+- Ter mais clareza do impacto que o software possui na organização como um todo;
+- Tomar decisões com mais confiança.
+
+### Arquitetura vs Design de software
+- Arquitetura: Escopo global ou alto nível;
+- Desgin de software: Escopo local;
+- "Atividades relacionadas a arquitura de software são sempre de design. Entretanto, nem todas atividades de desgin são sobre arquitetura. O objetivo primário da arquitetura de software é garantir que os atributos de qualidade, restrições de alto nível e os objetivos do negócio, sejam atendidos pelo sistema. Qualquer decisão de design que não tenha relação com este objetivo não é arquitetural. Todas as decisões de design para um componente que não sejam "visíveis" fora dele, geralmente, também não são." - "Elemar Jr".
+
+### Sustentabilidade
+- Desenvolver software é caro;
+- Software resolve uma "dor";
+- Software precisa se pagar ao longo do tempo;
+- Acompanhar a evolução do negócio;
+- Quanto mais tempo o software fica no ar, mais retorno gera;
+- A solução precisa ser arquitetada.
