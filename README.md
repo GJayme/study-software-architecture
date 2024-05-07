@@ -87,3 +87,36 @@ Exemplo de arquitetos corporativos:
 - Acompanhar a evolução do negócio;
 - Quanto mais tempo o software fica no ar, mais retorno gera;
 - A solução precisa ser arquitetada.
+
+### Pilares da arquitetura de software
+- Estruturação:
+    - Fácil evolução, componentização para entender os objetivos de negócio.
+- Componentização;
+- Relacionamento entre sistemas;
+- Governança.
+
+### Requisitos arquiteturais (RAs)
+- Performance;
+- Armazenamento de dados;
+- Escalabilidade;
+- Segurança;
+- Legal;
+- Audit;
+- Marketing.
+
+## Características arquiteturais
+- Operacionais;
+- Estruturais;
+- Cross-Cutting;
+- OBS: Esses itens foram tirados do livro - Fundamentos de arquiteturas de software.
+
+#### Características arquiteturais operacionais
+- Disponibilidade;
+- Recuperação de desastres;
+- Performance;
+- Recuperação (backup);
+- Confiabilidade e segurança;
+- Robustez;
+- Escalabilidade:
+    - Verticalmente: aumenta o recurso computacional de uma máquina;
+    - Horizontalmente: adiciona mais máquina.
