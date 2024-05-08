@@ -140,3 +140,112 @@ Exemplo de arquitetos corporativos:
     - Logs;
     - debugging
 
+#### Características arquiteturais: Cross-Cutting
+- Acessibilidade:
+    - Ter ciencia do público que vai acessar sua aplicação
+- Processo de retenção e recuperação de dados (quanto tempo os dados serão mantidos)
+    - Dados quentes: que são utilizados toda hora. Pode ser guardado em ambientes que permite acesso frequente,
+    - Dados frios: guardar de forma compactada, pois não serão acessados frequentemente.
+- Autenticação e Autorização:
+    - API Gateway: mecanismo utilizado na borda da aplicação. Quando o usuário acessa sua aplicação ele bate lá primeiro. Pode utilizar diversos plugins, tais como:
+        - Politicas de autenticação, politicas de time out, politica de quantidade de requisição
+- Legal:
+    - Tudo que acontece na sua aplicação tem que estar em conformidade com as leis do pais onde ele estiver rodando.
+- Privacidade:
+    - Como conseguir minimizar problemas de dados de usuários que podem vazar.
+- Segurança:
+    - De ponta a ponta, dês da borda;
+    - Trabalhe com WEB firewall;
+    - Utilize ao máximo tudo que é padrão aberto.
+- Usabilidade:
+    - No frontend existem diversas ferramentas que facilitam enxergar a usabilidade do usuário;
+    - No backend, a API precisa ter:
+        - documentação;
+        - fácil utilização; 
+        - trabalhar sempre com padrões como a Open API;
+        - contrato claro com a API;
+        - ter um bom README.
+
+## Perspectivas para arquitetar software de qualidade
+- Performance;
+- Escalabilidade;
+- Resiliência;
+
+### Performance
+- É o desempenho que um software possui para completar um determinado workload;
+    - Faz comparação entre versões do software ao longo do tempo.
+- As unidades de medida para avaliarmos a performance de um software são:
+    - Latência ou "response time": tempo de efetuar uma requisição, processar a chamada e retornar o resultado.
+    - Throughput: mostra o quanto de requisão o software consegue aguentar.
+- Ter um software performático é diferente de ter um software escalável
+
+#### Métricas para medir a performance
+- Diminuindo a latência:
+    - Normalmente medida em miliseconds. Caso a requisição passe a ser medida em segundos, já é considerada inaceitavel.
+    - É afetada pelo tempo de processamento da aplicação, rede e chamadas externas. Quanto mais longe estiver do datacenter, pior vai ser.
+- Aumentando o throughput:
+    - Permitindo aumento de quantidade de requisições.
+    - Diretamente ligado a latência. Quanto mais requisição presa estiver na aplicação, esperando a resposta, acaba diminui o throughput.
+
+#### Principais razões para baixa performance
+- Processo ineficiente: 
+    - Quanto se tem um sistema que esta trabalhando de forma ineficiente, gera baixa performance.
+- Recursos computacionais limitados:
+    - Quanto maior seu hardware, maior seu custo. E quanto menor seu hardware, menor seu custo.
+- Trabalhar de forma bloqueante:
+    - Efetuar o processamento de requisições não bloqueantes. Vai gerar um poder maior de performance.
+- Acesso serial a recursos:
+    - Cada vez que vai acessar uma API e espera terminar e depois vem a próxima requisão, ou seja, trabalhando de forma serial. Isso vai causar uma redução do throughput.
+
+#### Principais razões para aumentar a eficiência da performance
+- Escala da capacidade computacional (CPU, Disco, Memória, Rede);
+- Lógica por trás do software (Algoritmos, queries, overhead de frameworks);
+- Concorrência e paralelismo;
+- Banco de dados (tipos de bancos, schema);
+- Caching.
+
+#### Capacidade computacional: Escala vertical vs horizontal
+- Escala vertical: aumentar os recursos computacionais.
+- Escala horizontal: aumento a capacidade de máquinas ativas. Em conjunto com um load balancer para gerenciar a carga.
+
+#### Diferença entre concorrência e paralelismo
+- "Concorrência é sobre lidar com muitas coisas ao mesmo tempo. Paralelismo é fazer muitas coisas ao mesmo tempo." - Rob Pike.
+
+#### Caching
+- Cache na borda / Edge computing:
+    - Esse tipo de cache faz com que o usuário nem bate na sua cloud, pois esse cache traz pontos totalmente processados em um servidor que fica antes do seu servidor principal.
+    - Por exemplo uso de Cloudflare. E não tem um custo alto, comparado aos custos de infra.
+- Dados estáticos:
+    - Comum querer cachear CSS, HTML e imagens por exemplo.
+    - Muito barato;
+- Páginas web:
+- Funções internas:
+    - Evita reprocessamento de algoritmos pesados
+    - Acesso ao bacon de dados. Acessar banco de dados é extremamente caro e custoso.
+- Objetos
+    - Existem objetos que o seu sistema vai ter que ficar criando o tempo inteiro para gerar processamento de alguma forma.
+
+#### Caching: Exclusivo vs Compartilhado
+- Exclusivo: cache que funciona de forma local
+    - Baixa latência
+    - Duplicado entre os nós
+    - Problemas relacionados a sessões
+- Compartilhdo: cache esta centralizado
+    - Maior latência;
+    - Não há duplicação;
+    - Sessões compartilhadas;
+    - Banco de dados externo: podendo cachear os dados nesse banco
+        - MySQL
+        - Redis
+        - Memchache
+
+#### Caching: Edge computing
+- A internet não consegue mais funcionar sem o Edge computing, como por exemplo a Netflix. Sem o Edge computing a quantidade de trafego que a Netflix precisaria para funcionar iria causar sobrecarga a internet de forma geral.
+- Consegue fornecer serviços além da CDN, que consegue processar informações mais proximas do usuários evitando com que essa informação bata no seu servidor.
+- Cache realizado mais próximo ao usuário;
+- Evita a requisição chegar até o Cloud Provider / Infra;
+- Normalmente arquivos estáticos;
+- CDN - Content Delivery Network (Akamai);
+- Cloudflare workers: permite que faça deploy de aplicações que serão executadas em JS. Pois eles conseguiram isolar (mini container) cada chamada utilizando a engine V8 (node, google, browser) e que conseguem ser executada de forma rápida e mais próxima ao usuário.
+- Vercel: empresa que mantém o NextJs.
+- Akamai.
