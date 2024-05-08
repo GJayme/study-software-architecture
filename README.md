@@ -110,7 +110,7 @@ Exemplo de arquitetos corporativos:
 - Cross-Cutting;
 - OBS: Esses itens foram tirados do livro - Fundamentos de arquiteturas de software.
 
-#### Características arquiteturais operacionais
+#### Características arquiteturais: Operacionais
 - Disponibilidade;
 - Recuperação de desastres;
 - Performance;
@@ -120,3 +120,23 @@ Exemplo de arquitetos corporativos:
 - Escalabilidade:
     - Verticalmente: aumenta o recurso computacional de uma máquina;
     - Horizontalmente: adiciona mais máquina.
+
+#### Características arquiteturais: Estruturais
+- Configurável;
+- Extensibilidade;
+- Fácil intalação: 
+    - hoje em dia o modo mais simples é utilizando containers;
+- Reuso de componentes;
+- Internacionalização:
+    - tanto do backend (e.g. moedas) quanto do frontend (e.g. idiomas)
+- Fácil manutenção:
+    - quanto mais simples o software ficar, mais fácil será a manutenção;
+    - utilizar sempre o SOLID;
+    - usar adapters;
+    - trabalhar sempre com testes;
+- Portabilidade (diversos bancos de dados):
+    - sistemas menos dependentes dos vendors
+- Fácil suporte:
+    - Logs;
+    - debugging
+
