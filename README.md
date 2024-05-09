@@ -16,15 +16,15 @@
     - Estrutura dos componentes do software;
     - Lei de Conway: "Organizações que desenvolvem sistemas de software tendem a produzir sistemas que são cópias das estruturas de comunicação dessas empresas. "Melvin Conway".
 
-Se pudessemos definir a arquitetura de software, seria: <b>a relação entre os objetivos de negócios e suas restrições com os componentes a serem criados e suas responsabilidades visando sua evolução do software.</b>
+Se pudessemos definir a arquitetura de software, seria: **a relação entre os objetivos de negócios e suas restrições com os componentes a serem criados e suas responsabilidades visando sua evolução do software.**
 
-A definição mais formal é dada por: "É a organização fundamental de um sistema e seus componentes, suas relações, seu ambiente, <b>bem como os princípios que guiam seu design e evolução</b>." (IEEE Standard 1471)
+A definição mais formal é dada por: "É a organização fundamental de um sistema e seus componentes, suas relações, seu ambiente, **bem como os princípios que guiam seu design e evolução**." (IEEE Standard 1471)
 
 O processo de arquitetar um software estabelece que o que está sendo desenvolvido faça parte de um conjunto maior.
 
 #### Tecnológica
-- Focado em <b>especialidade em tecnologias específicas de mercado</b>;
-- O arquiteto vai <b>geração de valor baseado em especialidades</b>.
+- Focado em **especialidade em tecnologias específicas de mercado**;
+- O arquiteto vai **geração de valor baseado em especialidades**.
 
 Exemplo de arquitetos tecnológicos:
 - Arquiteto Elastic
@@ -45,11 +45,11 @@ Exemplo de arquitetos tecnológicos:
 - Analisa os impactos dos custos para o negócio.
 
 #### Corporativa
-- <b>Politicas e regras</b> que impactam estrategicamente a organização como um todo;
-- Arquitetura corporativa consegue fazer uma <b>avalição de custos</b> que toda a area de engenharia e de desenvolvimento vai ter para poder desenvolver os projetos para fazer a empresa crescer;
-- <b>Avaliação de possíveis novas tecnologias</b>;
-- <b>Padronização de tecnologias</b>;
-- <b>Planejamento de grandes implantações</b>.
+- **Politicas e regras** que impactam estrategicamente a organização como um todo;
+- Arquitetura corporativa consegue fazer uma **avalição de custos** que toda a area de engenharia e de desenvolvimento vai ter para poder desenvolver os projetos para fazer a empresa crescer;
+- **Avaliação de possíveis novas tecnologias**;
+- **Padronização de tecnologias**;
+- **Planejamento de grandes implantações**.
 
 Exemplo de arquitetos corporativos:
 - Sistema "core";
@@ -64,7 +64,7 @@ Exemplo de arquitetos corporativos:
 - Code reviews;
 - Apesar de nem todas as organicações possuírem o cargo de arquiteto de software, normalmente profissionais mais experientes como desenvolvedores seniors e tech leads acabam realizando esse papel baseado em suas experiencias anteriores;
 - Há empresas que apesar de não possuírem o cargo de arquiteto de software, possuem um departamento de arquitetura que auxilia os diversos times da organização com questões arquiteturais;
-- <b>OBS: [Manual do Arquiteto de Software](https://arquiteturadesoftware.online/).</b>
+- **OBS: [Manual do Arquiteto de Software](https://arquiteturadesoftware.online/).**
 
 ### Por que aprender arquitetura de software?
 - Pode navegar da visão macro para a visão micro de um ou mais softwares;
@@ -254,7 +254,7 @@ Exemplo de arquitetos corporativos:
 - Escalabilidade é a capacidade de sistemas suportarem o aumento (ou a redução) dos workloads incrementando (ou reduzindo) o custo em menor ou igual proporção.
 
 #### Escalabilidade vs Performance
-- Enquanto performance tem o foco em reduzir a latência e aumentar o throughput, a escalabilidade visa termos a <b>possibilidade</b> de aumentar ou diminuir o throughput adicionando ou removendo a capacidade computacional.
+- Enquanto performance tem o foco em reduzir a latência e aumentar o throughput, a escalabilidade visa termos a **possibilidade** de aumentar ou diminuir o throughput adicionando ou removendo a capacidade computacional.
 
 #### Escalando software
 - Escala vertical: aumentando o poder computacional
@@ -279,7 +279,7 @@ Exemplo de arquitetos corporativos:
 - Serverless: delega a responsabilidade do servidor para os cloud providers;
 
 #### Otimização de queries e índices
-- Tenha um sistema APM (Application Performance Monitor), com ele conseguimos entender todas as queries que estão rodando e enxergar os gargalos no banco de dados. Com APM nos conseguimos dar um <b>explain</b>, mostrando passo-a-passo a query rodando e ver o ponto que esta lento;
+- Tenha um sistema APM (Application Performance Monitor), com ele conseguimos entender todas as queries que estão rodando e enxergar os gargalos no banco de dados. Com APM nos conseguimos dar um **explain**, mostrando passo-a-passo a query rodando e ver o ponto que esta lento;
 - Trabalhar com índices de forma consciente;
 - CQRS (Command Query Responsibility Segregation): separação de leitura e escrita. Comando, que é uma inteção do usuário para gravação e a Query que é para fazer a leitura dos dados.
 
@@ -292,7 +292,48 @@ Exemplo de arquitetos corporativos:
 - Traefik
 
 ### Resiliência
-- Resiliência é um conjunto de estratégias adotadas <b>intencionalmente</b> para <b>adaptação</b> de um sistema quando uma falha ocorre.
-- Ter estratégias de resiliência nos possibilita <b>minimizar</b> os riscos de perda de dados e transações importantes para o negócio.
+- Resiliência é um conjunto de estratégias adotadas **intencionalmente** para **adaptação** de um sistema quando uma falha ocorre.
+- Ter estratégias de resiliência nos possibilita **minimizar** os riscos de perda de dados e transações importantes para o negócio.
 
 ### Quais as estratégias?
+
+#### Proteger e ser Protegido
+- Um sistema em uma arquitetura distribuída precisa adotar mecanismos de autopreservação para garantir ao máximo sua operação com **qualidade**.
+    - uma forma simples é retornar 500 quando perceber que o sistema está ficando sobrecarregado.
+- Um sistema não poder ser "egoísta" ao ponto de realizar mais requisições em um sistema que está falhando.
+- Um sistema lento no ar muitas vezes é pior do que um sistema fora do ar (efeito dominó).
+
+##### Health check
+- Sem sinais vitais, não é possível saber a "saúde" de um sistema;
+- Um sistema que não está saudável possui uma chance de se recuperar caso o tráfego pare de ser direcionado a ele temporariamente. Esse processo de recuperação do sistema é chamado de **self healing**;
+- Health check de qualidade
+    - A qualidade do sistema não deve ser medida apenas por um arquivo HTML;
+    - Deve usar de maneira estratégica, os dados necessários se acessados devem retornar 200, mas que ele consulte banco e efetuou verificações que indicam que o sistema está saudável.
+
+##### Rate Limiting
+- Proteger o sistema baseado no que ele foi projetado para suportar
+    - É preciso saber o limite que o sistema aguenta
+- Preferência programada por tipo de client, ou seja, colocar um limite específico por cada cliente.
+
+##### Circuit breaker
+- Protege o sistema fazendo com que as requisições feitas para ele sejam negadas. Ex: 500.
+- Quando um sistema (A) estiver ficando sobrecarregado ele pode **abrir o circuito** a comunicação com outro sistema (B) até que ele comece a se recuperar e volte a funcionar normalmente **fechando o circuito** novamente;
+- Circuito fechado = Requisições chegam normalmente
+- Circuito aberto = Requisições não chegam ao sistema. Erro instantâneo ao client
+- Meio aberto = Permite uma quantidade limitada de requisições para verificação se o sistema tem condições de voltar ao ar integralmente.
+- Existem bibliotecas que fazem esse tipo de funcionalidade. Porém hoje em dia existe recursos mais modernos, e o circuit breaker é implementado diretamente na rede.
+
+##### API Gateway
+- Centraliza o recebimento de todas as requisições que estão acontecendo na sua aplicação.
+- Garante que requisições "inapropriadas" cheguem até o sistema: Ex: usuário não autenticado.
+- Implementa políticas de Rate Limiting, Health check, etc
+- Ex: Kong
+
+##### Service Mesh
+- Conhecida como Malha de serviços;
+- Controla o tráfego de rede
+    - Permite colocar proxys do lado de cada sistema nosso, e toda a comunicação passa a ser intermediada por esses proxys antes de bater de fato no sistema desejado. Com isso tudo que passa pela rede passa a ser medido, controlado, obtenção de dados, informação.
+- Evita implementações de proteção pelo próprio sistema
+- Ajuda a controla tudo e entender o que ta acontecendo dentro da nossa rede;
+- mTLS
+- Permite trabalhar com Circuit breaker, retry, timeout, fault injection, etc.
