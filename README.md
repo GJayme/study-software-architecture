@@ -249,3 +249,50 @@ Exemplo de arquitetos corporativos:
 - Cloudflare workers: permite que faça deploy de aplicações que serão executadas em JS. Pois eles conseguiram isolar (mini container) cada chamada utilizando a engine V8 (node, google, browser) e que conseguem ser executada de forma rápida e mais próxima ao usuário.
 - Vercel: empresa que mantém o NextJs.
 - Akamai.
+
+### Escalabilidade
+- Escalabilidade é a capacidade de sistemas suportarem o aumento (ou a redução) dos workloads incrementando (ou reduzindo) o custo em menor ou igual proporção.
+
+#### Escalabilidade vs Performance
+- Enquanto performance tem o foco em reduzir a latência e aumentar o throughput, a escalabilidade visa termos a <b>possibilidade</b> de aumentar ou diminuir o throughput adicionando ou removendo a capacidade computacional.
+
+#### Escalando software
+- Escala vertical: aumentando o poder computacional
+    - O problema da escala vertical é o limite do poder computacional da máquina. Um hora esse limite é alcançado. Além de centralizar todo o sistema em uma única máquina.
+- Escala horizontal: aumentar a quantidade de máquinas
+    - A vantagem da horizontal é que o sistema fica distribuido em várias máquinas e se uma der problema, nem todas ficarão fora do ar.
+    - É a mais comum; 
+    - O software terá que estar preparado para utilizar a escala horizontal.
+- Quanto maior a escala (vertical/horizontal), maior a escala
+
+#### Escalando software - Descentralização
+- Disco efêmero: tudo que salvar em disco na máquina possa ser apagado quando necessário. Mudar para o uso de disco efêmero significa uma mudança de paradigma. A única utilização do disco é para arquivos temporários;
+- Servidor de aplicação vs Servidor de assets;
+- Cache centralizado;
+- Sessões centralizadas;
+- Upload / Gravção de arquivos: não ficam nas máquinas. Ficam em servidores de arquivos.
+
+#### Escala de banco de dados
+- Aumentando recuros computacionais: mais memória, disco melhor, processador melhor, etc;
+- Distribuindo responsabilidades (escrita vs leitura);
+- Shards de forma horizontal;
+- Serverless: delega a responsabilidade do servidor para os cloud providers;
+
+#### Otimização de queries e índices
+- Tenha um sistema APM (Application Performance Monitor), com ele conseguimos entender todas as queries que estão rodando e enxergar os gargalos no banco de dados. Com APM nos conseguimos dar um <b>explain</b>, mostrando passo-a-passo a query rodando e ver o ponto que esta lento;
+- Trabalhar com índices de forma consciente;
+- CQRS (Command Query Responsibility Segregation): separação de leitura e escrita. Comando, que é uma inteção do usuário para gravação e a Query que é para fazer a leitura dos dados.
+
+#### Proxy reverso
+- Proxy reverso é um servidor que fica na frente dos servidores web e encaminha as solicitações do cliente (por exemplo, navegador web) para esses servidores web.
+
+#### Soluções populares com proxy reverso
+- Nginx
+- HAProxy (HA = High Availability)
+- Traefik
+
+### Resiliência
+- Resiliência é um conjunto de estratégias adotadas <b>intencionalmente</b> para <b>adaptação</b> de um sistema quando uma falha ocorre.
+- Ter estratégias de resiliência nos possibilita <b>minimizar</b> os riscos de perda de dados e transações importantes para o negócio.
+
+### Quais as estratégias?
