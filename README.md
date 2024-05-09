@@ -337,3 +337,9 @@ Exemplo de arquitetos corporativos:
 - Ajuda a controla tudo e entender o que ta acontecendo dentro da nossa rede;
 - mTLS
 - Permite trabalhar com Circuit breaker, retry, timeout, fault injection, etc.
+
+##### Trabalhar de forma assíncrona
+- Evita perda de dados
+- Não há perda de dados no envio de uma transação se o server estiver fora
+- O servidor pode processar a transação em seu tempo quando estiver online
+- Entender com profundidade o message broker / sistema de stream
