@@ -343,3 +343,25 @@ Exemplo de arquitetos corporativos:
 - Não há perda de dados no envio de uma transação se o server estiver fora
 - O servidor pode processar a transação em seu tempo quando estiver online
 - Entender com profundidade o message broker / sistema de stream
+
+##### Garantias de entrega: Retry
+- Politicas de retry são muito importânte para manter a resiliência do sistema.
+- Retry sem exponencial: causa tentativas simulâneas, além de sobrecarregar ainda mais o sistema;
+- **Exponential backoff:** faz um tempo de espera exponencial para dar tempo do sistema se recuperar e fazer o retry novamente. Porém eventualmente o problema de sobrecarrega o sistema pode acontecer.
+- **Exponential backoff com Jitter:** é adicionando um algoritmo que gera um ruído junto com o tempo exponencial de espera. Evitando re-tentativas simultânea e aumentando ainda mais a chance de sucesso na hora de retry.
+
+##### Garantias de entrega: Kafka
+- Fire and forget (ACK 0): enviar mensagem sem ter a necessidade de saber se ela foi entregue. Baixo custo computacional.
+- Moderado (ACK 1): garantia que o leader recebeu. Custo computacional moderado.
+- Mais garantia (ACK -1): garantia que todos os brokers receberam. Custo computacional alto.
+
+##### Situações complexas
+- Como ter resiliência da resiliência, como por exemplo:
+    - O que acontece se o broker cair. Vamos perde as mensagens? o sistema vai crashar? Como que podemos tratar esse tipo de problema? Nós sempre vamos ter **single point of failure**, portanto nós temos que dar um jeito de não perder os dados quando esses pontos falharem.
+- Resiliência é um assunto complexo.
+- O custo sobe muito, conforme aumentamos a resiliência.
+- Não é de responsabilidade de um desenvolvedor definir qual o nivel de resiliência, mas sim de um CTO.
+
+
+    
+
